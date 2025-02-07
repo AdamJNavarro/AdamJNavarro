@@ -5,6 +5,7 @@
 <!-- SOCIAL_BADGES:END -->
 
 <br>
+<br>
 
 Hey there, my name is Adam! I’m a
 coder, fitness enthusiast, music &
@@ -27,6 +28,7 @@ To find out more about me, hop on over to [my website.](https://adamjnavarro.com
 ## My Stack
 
 <br>
+<br>
 
 **Languages**
 
@@ -34,6 +36,7 @@ To find out more about me, hop on over to [my website.](https://adamjnavarro.com
 
 <!-- LANGUAGE_BADGES:END -->
 
+<br>
 <br>
 
 **Frameworks**
@@ -43,6 +46,7 @@ To find out more about me, hop on over to [my website.](https://adamjnavarro.com
 <!-- FRAMEWORK_BADGES:END -->
 
 <br>
+<br>
 
 **Services**
 
@@ -50,6 +54,7 @@ To find out more about me, hop on over to [my website.](https://adamjnavarro.com
 
 <!-- SERVICE_BADGES:END -->
 
+<br>
 <br>
 
 **Tools**
