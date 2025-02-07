@@ -1,7 +1,9 @@
 import type { ReadmeBadge } from "./data";
 import theme from "./theme";
 
-const newline_char = "\n";
+const newline = "\n";
+const tab = "\t";
+const dbl_tab = "\t\t";
 const badge_base_url = "https://img.shields.io/badge";
 
 export enum Tag {
@@ -21,34 +23,12 @@ type BuildBadgeUrlsArgs = {
 
 function build_badge_urls({ label, logo, logo_color }: BuildBadgeUrlsArgs) {
   const shared_params = "style=for-the-badge&logoSize=auto";
-  const dark_badge_url = `${badge_base_url}/${label}-${theme.colors.surface.dark}?logo=${logo}&logoColor=${logo_color.dark}&${shared_params}#gh-dark-mode-only`;
-  const light_badge_url = `${badge_base_url}/${label}-${theme.colors.surface.light}?logo=${logo}&logoColor=${logo_color.light}&${shared_params}#gh-light-mode-only`;
+  const dark_badge_url = `${badge_base_url}/${label}-${theme.colors.surface.dark}?logo=${logo}&logoColor=${logo_color.dark}&${shared_params}`;
+  const light_badge_url = `${badge_base_url}/${label}-${theme.colors.surface.light}?logo=${logo}&logoColor=${logo_color.light}&${shared_params}`;
   return {
     dark: dark_badge_url,
     light: light_badge_url,
   };
-}
-
-type BuildBadgeMdStringArgs = {
-  static_label: string;
-  url: string;
-  is_dark: boolean;
-  href?: string;
-};
-
-function build_badge_md_string({
-  static_label,
-  url,
-  is_dark,
-  href,
-}: BuildBadgeMdStringArgs): string {
-  const str =
-    `${newline_char}` +
-    `${href ? "[" : ""}` +
-    `![${static_label} badge ${is_dark ? "dark" : "light"}](${url})` +
-    `${href ? `](${href})` : ""}`;
-
-  return str;
 }
 
 type AddBadgesMarkdownArgs = {
@@ -72,28 +52,37 @@ export function add_badges_markdown({
 
     const badges_md: string[] = [];
 
+    badges_md.push(newline);
+
     for (let i = 0; i < badges.length; i++) {
       const { static_label, label, logo, href } = badges[i];
       const badge_urls = build_badge_urls({ label, logo, logo_color });
-      const dark_badge_str = build_badge_md_string({
-        static_label: static_label ? static_label : label,
-        url: badge_urls.dark,
-        is_dark: true,
-        href,
-      });
-      badges_md.push(dark_badge_str);
 
-      const light_badge_str = build_badge_md_string({
-        static_label: static_label ? static_label : label,
-        url: badge_urls.light,
-        is_dark: false,
-        href,
-      });
+      const source_str = `<source srcset="${badge_urls.light}" media="(prefers-color-scheme: light)" />`;
+      const img_str = `<img src="${badge_urls.dark}" alt="${
+        static_label ? static_label : label
+      } badge" />`;
 
-      badges_md.push(light_badge_str);
+      const md_content = href
+        ? [
+            `<a href="${href}">${newline}`,
+            `${tab}<picture>${newline}`,
+            `${dbl_tab}${source_str}${newline}`,
+            `${dbl_tab}${img_str}${newline}`,
+            `${tab}</picture>${newline}`,
+            "</a>",
+          ].join("")
+        : [
+            `<picture>${newline}`,
+            `${tab}${source_str}${newline}`,
+            `${tab}${img_str}${newline}`,
+            "</picture>",
+          ].join("");
+
+      badges_md.push(md_content);
+      badges_md.push(newline);
     }
 
-    badges_md.push(newline_char);
     const generated_content = badges_md.join("");
     updated_md = build_readme({
       prev_content: updated_md,
@@ -118,8 +107,6 @@ export function build_readme({
 }: BuildReadmeArgs): string {
   const tag_to_find = `<!-- ${comment_tag}`;
   const closing_tag = "-->";
-  const new_line_flag = true;
-
   const start_index_of_opening_tag = prev_content.indexOf(
     `${tag_to_find}:START`
   );
@@ -134,9 +121,9 @@ export function build_readme({
 
   return [
     prev_content.slice(0, end_index_of_opening_tag + closing_tag.length),
-    new_line_flag ? newline_char : "",
+    newline,
     generated_content,
-    new_line_flag ? newline_char : "",
+    newline,
     prev_content.slice(start_index_of_closing_tag),
   ].join("");
 }

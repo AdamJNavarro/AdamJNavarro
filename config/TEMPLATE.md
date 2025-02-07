@@ -57,5 +57,3 @@ To find out more about me, hop on over to [my website.](https://adamjnavarro.com
 <!-- TOOL_BADGES:START -->
 
 <!-- TOOL_BADGES:END -->
-
-<br>
