@@ -28,7 +28,7 @@
 
 Hey there, my name is Adam! I’m a
 coder, fitness enthusiast, music &
-dance lover, and a dog owner to a Soft-coated
+dance lover, and a dog owner to a
 Wheaten Terrier named Ace.
 
 To find out more about me, hop on over to [my website.](https://adamjnavarro.com)
