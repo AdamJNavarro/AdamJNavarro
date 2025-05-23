@@ -1,8 +1,0 @@
-{
-  "markdown-preview-github-styles.colorTheme": "system",
-  "markdown-preview-github-styles.darkTheme": "dark",
-  "markdown-preview-github-styles.lightTheme": "light",
-  "[markdown]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
-}
