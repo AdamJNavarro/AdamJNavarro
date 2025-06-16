@@ -47,3 +47,7 @@ To find out more about me, hop on over to [my website.](https://adamjnavarro.com
 	<source srcset="https://img.shields.io/badge/hono-F2F5F8?logo=hono&logoColor=00A3A0&style=for-the-badge&logoSize=auto" media="(prefers-color-scheme: light)" />
 	<img src="https://img.shields.io/badge/hono-070A0D?logo=hono&logoColor=00DEDB&style=for-the-badge&logoSize=auto" alt="hono badge" />
 </picture>
+<picture>
+	<source srcset="https://img.shields.io/badge/turborepo-F2F5F8?logo=turborepo&logoColor=00A3A0&style=for-the-badge&logoSize=auto" media="(prefers-color-scheme: light)" />
+	<img src="https://img.shields.io/badge/turborepo-070A0D?logo=turborepo&logoColor=00DEDB&style=for-the-badge&logoSize=auto" alt="turborepo badge" />
+</picture>
